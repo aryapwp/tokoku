@@ -1,6 +1,11 @@
 
 @extends('selamatdatang')
 @section('content')
+    <div class="pcoded-content">
+        <div class="pcoded-inner-content">
+            <!-- Main-body start -->
+            <div class="main-body">
+                <div class="page-wrapper">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
                         <form action="{{ route('orders.store') }}" method="POST" >

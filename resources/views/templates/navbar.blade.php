@@ -102,36 +102,36 @@
                             
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Menu</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="active">
-                                    <a href="">
+                                <li class="@if(str_is(route('home').'*',url()->current())) active @endif">
+                                    <a href="{{route('home')}}">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
+                                <li class="@if(str_is(route('customers.index').'*',url()->current())) active @endif">
+                                    <a href="{{ route('customers.index') }}">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Customers</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
+                                <li class="@if(str_is(route('orders.index').'*',url()->current())) active @endif">
+                                    <a href="{{ route('orders.index') }}">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Orders</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
+                                <li lass="@if(str_is(route('orderitems.index').'*',url()->current())) active @endif">
+                                    <a href="{{ route('orderitems.index') }}">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Order Items</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="">
+                                <li class="@if(str_is(route('items.index').'*',url()->current())) active @endif">
+                                    <a href="{{ route('items.index') }}">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Items</span>
                                         <span class="pcoded-mcaret"></span>

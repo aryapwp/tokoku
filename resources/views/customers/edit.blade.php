@@ -8,15 +8,16 @@
                 <div class="page-wrapper">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
+                        
                         <form action="{{ route('customers.update', $customer->id) }}" method="POST">
+                            {!! csrf_field() !!}
                             <div class="card">
                                 <div class="card-header">
                                     <h5>Edit Customers</h5>
                                 </div>
                             </div>
-                            @csrf
-                            @method('PUT')
-
+                            
+                            <input type="hidden" name="id" value="{{$customer->id}}">
                             <div class="form-group">
                                 <label class="font-weight-bold">Name</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $customer->name) }}" placeholder="Masukkan Nama">

@@ -64,9 +64,11 @@ class CustomerController extends Controller
      * @param  mixed $customer
      * @return void
      */
-    public function edit(Customers $customer)
+    public function edit($customer)
     {
-        return view('customers.edit', compact('customer'));
+        $customer = Customers::where('id', $customer)->first();
+        return view('customers.edit', ['data' => $customer])
+        ->with('customer', $customer);
     }
     
     /**
@@ -76,7 +78,17 @@ class CustomerController extends Controller
      * @param  mixed $customer
      * @return void
      */
-    public function update(Request $request, Customers $customer)
+    public function update(Request $request)
+    {
+        Customers::where('id', $request->id)->update([
+            'name' => $request->name,
+            'address'   => $request->address,
+            'phone' => $request->phone
+        ]);
+        return redirect()->route('customers.index')->with(['success' => 'Data Berhasil Diubah!']);
+
+    }
+    /*public function update(Request $request,Customers $customer)
     {
         //validate form
         $this->validate($request, [
@@ -90,18 +102,22 @@ class CustomerController extends Controller
             'address'   => $request->address,
             'phone' => $request->phone
         ]);
-
+        Customers::where('id', $customer)->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone
+        ]);
         //redirect to index
         return redirect()->route('customers.index')->with(['success' => 'Data Berhasil Diubah!']);
-    }
+    }*/
 
-    public function destroy(Customers $customer)
+    public function destroy($customer)
     {
         /*//delete image
         Storage::delete('public/customers/'. $customer->image);*/
 
         //delete customer
-        $customer->delete();
+        Customers::where('id', $customer)->delete();
 
         //redirect to index
         return redirect()->route('customers.index')->with(['success' => 'Data Berhasil Dihapus!']);

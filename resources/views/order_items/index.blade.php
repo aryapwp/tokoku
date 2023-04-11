@@ -8,42 +8,49 @@
                 <div class="page-wrapper">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('customers.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+                        <a href="{{ route('orderitems.create') }}" class="btn btn-md btn-success mb-3">TAMBAH ORDER ITEM</a>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Alamat</th>
-                                <th scope="col">Telepon</th>
+                                <th scope="col">Order ID</th>
+                                <th scope="col">Item ID</th>
+                                <th scope="col">QTY</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Note</th>
                                 <th scope="col">Aksi</th>
                               </tr>
                             </thead>
                             <tbody>
-                              @forelse ($customers as $customer)
+                              @forelse ($orders as $order)
                                 <tr>
                                     <td class="text-center">
-                                        {{$customer->name}}
+                                        {{$order->order_id}}
                                     </td>
-                                    <td>{{ $customer->address }}</td>
-                                    <td>{{$customer->phone}}</td>
+                                    <td>{{ $order->item_id }}</td>
+                                    <td>{{$order->qty}}</td>
+                                    <td>{{ $order->price }}</td>
+                                    <td>{{ $order->discount }}</td>
+                                    <td>{{ $order->total }}</td>
+                                    <td>{{ $order->note }}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('customers.destroy', $customer->id) }}" method="POST">
-                                            <a href="{{ route('customers.edit', $customer->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-                                            <a href="{{ route('customers.destroy', $customer->id) }}" class="btn btn-sm btn-danger">HAPUS</a>
-                                            <!-- @csrf
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('orders.destroy', $order->id) }}" method="POST">
+                                            <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                            @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button> -->
+                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
                                         </form>
                                     </td>
                                 </tr>
                               @empty
                                   <div class="alert alert-danger">
-                                      Data Customer belum Tersedia.
+                                      Data Order belum Tersedia.
                                   </div>
                               @endforelse
                             </tbody>
                           </table>  
-                          {{ $customers->links() }}
+                          {{ $orders->links() }}
                     </div>
                 </div>
             </div>
@@ -67,4 +74,7 @@
             
         @endif
     </script>
-    @endsection
+
+</body>
+</html>
+@endsection
